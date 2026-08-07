@@ -1,5 +1,22 @@
 
+
+
 import streamlit as st
+
+def check_password():
+    if st.session_state.get("password_correct"):
+        return True
+    pwd = st.text_input("Password", type="password")
+    if pwd == "HEOR_Lock1!":
+        st.session_state.password_correct = True
+        st.rerun()
+    elif pwd:
+        st.error("Incorrect password")
+    return False
+
+if not check_password():
+    st.stop()
+
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
